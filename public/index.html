@@ -1,0 +1,45 @@
+
+<!--
+Para crear la instancia de html de manera 
+rapida podemos digitar " ! " y en ENTER.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocketServer</title>
+</head>
+<body>
+    <h1>Acceso dengado</h1>
+
+    <!--Creamos un script con la direccion del socket-->
+    <script src="socket.io/socket.io.js"></script>
+    
+    <script>
+var socket= io();
+//Si el socket "Cliente" se conecta el mensaje de consola exitoso
+socket.on('connect', function(){
+    console.log('Conectado al Servidor')
+
+});
+//Si el socket "Cliente" se desconecta el mensaje de consola error
+socket.on('disconnect', function(){
+    console.log('Perdimos la conexion')
+    
+});
+
+//Emitir eventos 
+socket.emit('mensaje',{ nombre:'Fernando'});
+
+//Escuchar eventos 
+socket.on('mensaje', function(payload){
+    console.log('Escuchando', payload);
+});
+
+    </script>
+
+</body>
+</html>
